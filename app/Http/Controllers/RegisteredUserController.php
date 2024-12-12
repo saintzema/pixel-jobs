@@ -26,7 +26,7 @@ class RegisteredUserController extends Controller
     {
             $userAttributes = $request->validate(
                 [
-                    'name' => ['required'],
+                    'name' => ['required', 'min:3'],
                     'email' => ['required', 'email', 'unique:users,email'],
                     'password' => ['required', 'confirmed', Password::min(6)],
                 ]
@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
                 $employerAttributes = $request->validate(
                     [
                         'employer' => ['required'],
-                        'logo' => ['required', File::types(['png', 'jpg', 'webp'])],
+                        'logo' => ['required', File::types(['png', 'jpg', 'webp', 'svg'])],
                     ]
                     );
 

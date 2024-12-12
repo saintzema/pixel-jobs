@@ -15,7 +15,7 @@ class JobSeeder extends Seeder
     public function run(): void
     {
         $tags = Tag::factory(3)->create(); // Create 3 new tags
-        $employers = Employer::factory(5)->create();
+        $employers = Employer::factory(3)->create();
 
         Job::factory(5)->hasAttached($tags)->create(new Sequence([
             'featured' => false,
@@ -45,7 +45,7 @@ class JobSeeder extends Seeder
                     'title' => $title, // Assign unique title
                     'salary' => rand(50000, 120000), // Random salary
                 ])->each(function ($job) use ($tags) {
-                    $job->tags()->attach($tags->random(rand(1, 5))->pluck('id')->toArray()); // Attach random tags (1 to 3)
+                    $job->tags()->attach($tags->random(rand(1, 3))->pluck('id')->toArray()); // Attach random tags (1 to 3)
                 });
             }
         }
